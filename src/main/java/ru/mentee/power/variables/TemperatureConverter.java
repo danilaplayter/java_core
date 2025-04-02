@@ -2,10 +2,10 @@ package ru.mentee.power.variables;
 
 public class TemperatureConverter {
 
-    public static final double ABSOLUTE_ZERO_KELVIN = 0;
+    /*public static final double ABSOLUTE_ZERO_KELVIN = 0;
     public static final double ABSOLUTE_ZERO_CELSIUS = -273.15;
     public static final double ABSOLUTE_ZERO_FAHRENHEIT = -459.67;
-
+    */ //закинул в коментарии, потому что idea не даёт сделать commit and push
     public static void main(String[] args) {
 
         double celsius = 25;
