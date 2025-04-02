@@ -8,16 +8,29 @@ on:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        java: [ '17', '21' ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up JDK 17
+
+      - name: Set up JDK ${{ matrix.java }}
         uses: actions/setup-java@v3
         with:
-          java-version: '21'
+          java-version: ${{ matrix.java }}
           distribution: 'temurin'
           cache: 'gradle'
-      - name: Build with Gradle
-        run: ./gradlew build
-      - name: Run Tests
-        run: ./gradlew test
+
+      - name: Grant execute permission for Gradle Wrapper
+        run: chmod +x gradlew
+
+      - name: Build and test
+        run: ./gradlew build --no-daemon
+
+      - name: Upload Artifact (JAR)
+        if: success()
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-${{ matrix.java }}.jar
+          path: build/libs/*.jar
