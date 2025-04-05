@@ -39,8 +39,6 @@ class LogicalTrainerTest {
         assertThat(results.get(6)).as("6: Dislikes == 2").isTrue(); // 2 dislikes
     }
 
-
-    // 🔥 ВАША ЗАДАЧА: Дописать этот тест! 🔥
     @Test
     void testEvaluateLogic_AllFalse() {
         Map<Integer, Boolean> results = LogicalTrainer.evaluateLogic(false, false, false);

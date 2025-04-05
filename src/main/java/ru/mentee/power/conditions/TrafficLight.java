@@ -5,12 +5,11 @@ import java.util.Scanner;
 public class TrafficLight {
 
     public static String getRecommendation(String signal) {
-        // TODO: Реализуйте логику с if-else или switch-case здесь, используя строки
-        // "Красный" -> "Стой на месте!"
-        // "Желтый" -> "Приготовься, но подожди!"
-        // "Зеленый" -> "Можно переходить дорогу!"
-        // Иначе -> "Некорректный сигнал!"
-        // Используйте equalsIgnoreCase для сравнения строк без учета регистра
+
+        if (signal == null) {
+            return "Некорректный сигнал!";
+        }
+
         if(signal.equalsIgnoreCase("Красный")){
             System.out.println("Стой на месте!");
         }
@@ -19,9 +18,6 @@ public class TrafficLight {
         }
         if(signal.equalsIgnoreCase("Зелёный")){
             System.out.println("Можно переходить дорогу!");
-        }
-        if (signal == null) {
-            return "Некорректный сигнал!";
         }
 
         if (signal.equalsIgnoreCase("Красный")) {

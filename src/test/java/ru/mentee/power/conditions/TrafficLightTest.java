@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class TrafficLightTest {
 
+
     @Test
     void testGetRecommendation_RedSignal() {
         assertThat(TrafficLight.getRecommendation("Красный")).isEqualTo("Стой на месте!");
@@ -23,11 +24,13 @@ class TrafficLightTest {
         assertThat(TrafficLight.getRecommendation("Зеленый")).isEqualTo("Можно переходить дорогу!");
         assertThat(TrafficLight.getRecommendation("зеленый")).isEqualTo("Можно переходить дорогу!");
     }
-
-    // 🔥 ВАША ЗАДАЧА: Дописать этот тест! 🔥
     @Test
     void testGetRecommendation_InvalidSignal() {
         assertThat(TrafficLight.getRecommendation("Синий")).isEqualTo("Некорректный сигнал!");
         assertThat(TrafficLight.getRecommendation("")).isEqualTo("Некорректный сигнал!");
+    }
+    @Test
+    void testGetRecommendation_NullSignal() {
+        assertThat(TrafficLight.getRecommendation(null)).isEqualTo("Некорректный сигнал!");
     }
 }
