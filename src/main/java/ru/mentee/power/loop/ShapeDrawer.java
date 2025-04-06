@@ -5,7 +5,7 @@ public class ShapeDrawer {
     private final String ERROR = "Ошибка";
 
     public String drawSquare(int size) {
-        if(size < 0){
+        if(size <= 0){
             return ERROR;
         }
         StringBuilder squere = new StringBuilder();
@@ -18,7 +18,7 @@ public class ShapeDrawer {
     }
 
     public String drawEmptySquare(int size) {
-        if(size < 0){
+        if(size <= 0){
             return ERROR;
         }
         StringBuilder square = new StringBuilder();
@@ -36,7 +36,7 @@ public class ShapeDrawer {
     }
 
     public String drawTriangle(int height) {
-        if(height < 0){
+        if(height <= 0){
             return ERROR;
         }
         StringBuilder triangle = new StringBuilder();
@@ -47,10 +47,10 @@ public class ShapeDrawer {
     }
 
     public String drawRhombus(int size) {
-        if(size < 0){
+        if(size <= 0){
             return ERROR;
         }
-        if(size % 2 == 1){
+        if(size % 2 == 0){
             size++;
         }
 
@@ -80,15 +80,15 @@ public class ShapeDrawer {
         ShapeDrawer drawer = new ShapeDrawer();
 
         System.out.println("Квадрат 5x5:");
-        drawer.printShape(drawer.drawSquare(10));
+        drawer.printShape(drawer.drawSquare(5));
 
         System.out.println("\nПустой квадрат 5x5:");
-        drawer.printShape(drawer.drawEmptySquare(10));
+        drawer.printShape(drawer.drawEmptySquare(5));
 
         System.out.println("\nТреугольник высотой 5:");
-        drawer.printShape(drawer.drawTriangle(10));
+        drawer.printShape(drawer.drawTriangle(5));
 
         System.out.println("\nРомб размером 5:");
-        drawer.printShape(drawer.drawRhombus(10));
+        drawer.printShape(drawer.drawRhombus(2));
     }
 }

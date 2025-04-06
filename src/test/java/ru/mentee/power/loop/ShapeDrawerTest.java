@@ -55,7 +55,7 @@ class ShapeDrawerTest {
 
     @Test
     void testRhombusWithEvenSize() {
-       assertThat(drawer.drawRhombus(1)).isEqualTo(" *\n***\n *\n");
-        assertThat(drawer.drawRhombus(3)).isEqualTo("  *\n ***\n*****\n ***\n  *\n");
+       assertThat(drawer.drawRhombus(2)).isEqualTo(" *\n***\n *\n");
+        assertThat(drawer.drawRhombus(4)).isEqualTo("  *\n ***\n*****\n ***\n  *\n");
     }
 }
