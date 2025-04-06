@@ -10,5 +10,6 @@ public class ForLoopExample {
         for (int index = 0; index < fruits.length; index++) {
             System.out.println("Индекс " + index + ": " + fruits[index]);
         }
+
     }
 }

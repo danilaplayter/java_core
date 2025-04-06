@@ -12,5 +12,6 @@ public class ForEachListExample {
         for (String color : colors) {
             System.out.println(color);
         }
+
     }
 }

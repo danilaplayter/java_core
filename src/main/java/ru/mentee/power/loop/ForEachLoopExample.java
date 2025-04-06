@@ -9,5 +9,6 @@ public class ForEachLoopExample {
         for (String fruit : fruits) {
             System.out.println(fruit);
         }
+
     }
 }
