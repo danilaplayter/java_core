@@ -6,11 +6,8 @@ import java.util.Random;
 public class QuickSortAlgorithm {
 
     public static int[] quickSort(int[] array) {
-
         int[] result = Arrays.copyOf(array, array.length);
-
         quickSortRecursive(result, 0, result.length - 1);
-
         return result;
     }
 
@@ -68,16 +65,14 @@ public class QuickSortAlgorithm {
     }
 
     public static void compareWithJavaSort(int[] array) {
-        // Создаем копии массива
+
         int[] arrayCopy1 = Arrays.copyOf(array, array.length);
         int[] arrayCopy2 = Arrays.copyOf(array, array.length);
 
-        // Измеряем время для нашей реализации Quick Sort
         long startTime1 = System.currentTimeMillis();
         quickSort(arrayCopy1);
         long endTime1 = System.currentTimeMillis();
 
-        // Измеряем время для Arrays.sort()
         long startTime2 = System.currentTimeMillis();
         Arrays.sort(arrayCopy2);
         long endTime2 = System.currentTimeMillis();
@@ -94,7 +89,6 @@ public class QuickSortAlgorithm {
         System.out.println("Исходный массив: " + Arrays.toString(testArray));
         System.out.println("Отсортированный массив: " + Arrays.toString(quickSort(testArray)));
 
-        // Проверка на больших массивах
         int[] largeArray = generateRandomArray(100000, 1000);
         compareWithJavaSort(largeArray);
     }
