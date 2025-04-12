@@ -3,7 +3,7 @@ package ru.mentee.power.loop;
 import java.util.Arrays;
 import java.util.Random;
 
-public class QuickSortAlgorithm {
+public class QuickSortAlgorithms {
 
     public static int[] quickSort(int[] array) {
         int[] result = Arrays.copyOf(array, array.length);
