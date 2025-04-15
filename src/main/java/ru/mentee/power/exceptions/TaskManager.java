@@ -17,6 +17,7 @@ public class TaskManager {
         return id;
     }
 
+
     public double getBalance() {
         return balance;
     }

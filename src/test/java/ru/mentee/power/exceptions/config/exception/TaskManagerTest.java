@@ -1,8 +1,10 @@
-package ru.mentee.power.exceptions;
+package ru.mentee.power.exceptions.config.exception;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ru.mentee.power.exceptions.TaskManager;
+import ru.mentee.power.exceptions.TaskValidationException;
 
 import static org.assertj.core.api.Assertions.*;
 

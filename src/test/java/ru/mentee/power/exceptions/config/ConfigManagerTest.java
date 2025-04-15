@@ -82,6 +82,16 @@ class ConfigManagerTest {
     }
 
     @Test
+    @DisplayName("Должен выбросить InvalidConfigValueException при запросе некорректного целочисленного значения")
+    void shouldThrowInvalidConfigValueExceptionWhenIntValueIsInvalid() {
+        testConfig.put("invalid.int.key", "not_a_number");
+        ConfigManager manager = new ConfigManager(testConfig);
+
+        assertThatThrownBy(() -> manager.getRequiredIntValue("invalid.int.key"))
+                .isInstanceOf(InvalidConfigValueException.class);
+    }
+
+    @Test
     @DisplayName("Должен успешно обновить существующее значение в конфигурации")
     void shouldUpdateExistingValueInConfig() {
         String existingKey = "string.key";
