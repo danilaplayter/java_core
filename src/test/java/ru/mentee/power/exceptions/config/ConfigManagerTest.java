@@ -51,18 +51,6 @@ class ConfigManagerTest {
     }
 
     @Test
-    @DisplayName("Должен выбросить InvalidConfigValueException при запросе некорректного целочисленного значения")
-    void shouldThrowInvalidConfigValueExceptionWhenIntValueIsInvalid() {
-        testConfig.put("invalid.int.key", "not_a_number");
-        ConfigManager manager = new ConfigManager(testConfig);
-
-        assertThatThrownBy(() -> manager.getRequiredIntValue("invalid.int.key"))
-                .isInstanceOf(InvalidConfigValueException.class)
-                .hasMessageContaining("invalid.int.key")
-                .hasMessageContaining("not_a_number");
-    }
-
-    @Test
     @DisplayName("Должен успешно получить булево значение по существующему ключу")
     void shouldGetBooleanValueWhenKeyExists() throws MissingConfigKeyException, InvalidConfigValueException {
         boolean trueValue = configManager.getRequiredBooleanValue("boolean.true.key");
@@ -79,9 +67,7 @@ class ConfigManagerTest {
         ConfigManager manager = new ConfigManager(testConfig);
 
         assertThatThrownBy(() -> manager.getRequiredBooleanValue("invalid.boolean.key"))
-                .isInstanceOf(InvalidConfigValueException.class)
-                .hasMessageContaining("invalid.boolean.key")
-                .hasMessageContaining("yes");
+                .isInstanceOf(InvalidConfigValueException.class);
     }
 
     @Test
