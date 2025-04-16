@@ -9,7 +9,7 @@ public class LinkedListAnalyzer {
             throw new IllegalArgumentException("Один из списков list1 или list2 - null");
         }
 
-        Set<T> seen = new HashSet<>();
+        Set<T> seen = new LinkedHashSet<>();
         List<T> result = new LinkedList<>();
 
         for (T item : list1) {
@@ -28,24 +28,20 @@ public class LinkedListAnalyzer {
     }
 
     public static <T> List<T> reverse(List<T> list) {
-        List<T> reversedList = new ArrayList<>();
-
         if (list == null) {
             throw new IllegalArgumentException("Список null");
         }
 
         if (list.size() <= 1) {
-            return list;
+            return new LinkedList<>(list);
         }
 
+        LinkedList<T> reversed = new LinkedList<>();
         for (T element : list) {
-            reversedList.addFirst(element);
+            reversed.addFirst(element);
         }
 
-        list.clear();
-        list.addAll(reversedList);
-
-        return list;
+        return reversed;
     }
 
     public static <T> List<T> removeDuplicates(List<T> list) {
@@ -53,19 +49,16 @@ public class LinkedListAnalyzer {
             throw new IllegalArgumentException("Список null");
         }
 
-        List<T> result = new ArrayList<>();
-        Iterator<T> iterator = list.iterator();
+        Set<T> seen = new LinkedHashSet<>();
+        List<T> result = new LinkedList<>();
 
-        while (iterator.hasNext()) {
-            T current = iterator.next();
-            if (!result.contains(current)) {
-                result.add(current);
+        for (T item : list) {
+            if (seen.add(item)) {
+                result.add(item);
             }
         }
 
-        list.clear();
-        list.addAll(result);
-        return list;
+        return result;
     }
 
     public static <T> List<T> rotate(List<T> list, int positions) {
@@ -74,22 +67,22 @@ public class LinkedListAnalyzer {
         }
 
         if (list.isEmpty()) {
-            return list;
+            return new LinkedList<>(list);
         }
 
-        LinkedList<T> linkedList = (LinkedList<T>) list;
-        int size = linkedList.size();
+        LinkedList<T> result = new LinkedList<>(list);
+        int size = result.size();
         int shift = positions % size;
 
         if (shift < 0) {
             shift += size;
         }
 
-        for (int i = 0; i < shift-1; i++) {
-            T last = linkedList.removeLast();
-            linkedList.addFirst(last);
+        for (int i = 0; i < shift; i++) {
+            T last = result.removeLast();
+            result.addFirst(last);
         }
 
-        return list;
+        return result;
     }
 }

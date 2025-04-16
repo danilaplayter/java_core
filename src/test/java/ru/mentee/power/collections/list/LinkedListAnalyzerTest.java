@@ -57,7 +57,7 @@ public class LinkedListAnalyzerTest {
     void shouldThrowExceptionForNullArgumentInReverse() {
         assertThatThrownBy(() -> LinkedListAnalyzer.reverse(null))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("Один из списков list1 или list2 - null");
+                .hasMessageContaining("Список null");
     }
 
     @Test
@@ -76,7 +76,7 @@ public class LinkedListAnalyzerTest {
     void shouldThrowExceptionForNullArgumentInRemoveDuplicates() {
         assertThatThrownBy(() -> LinkedListAnalyzer.removeDuplicates(null))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("Один из списков list1 или list2 - null");
+                .hasMessageContaining("Список null");
     }
 
     @Test
@@ -94,7 +94,7 @@ public class LinkedListAnalyzerTest {
     @DisplayName("Метод rotate должен корректно сдвигать элементы влево")
     void shouldRotateElementsToTheLeft() {
         LinkedList<String> input = new LinkedList<>(Arrays.asList("a", "b", "c", "d", "e"));
-        List<String> expected = Arrays.asList("d", "e", "a", "b", "c");
+        List<String> expected = Arrays.asList("c", "d", "e", "a", "b");
 
         List<String> result = LinkedListAnalyzer.rotate(input, -2);
 
