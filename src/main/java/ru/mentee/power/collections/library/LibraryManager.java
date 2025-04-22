@@ -134,7 +134,7 @@ public class LibraryManager {
         }
 
         List<Book> sortedList = new ArrayList<>(books);
-        sortedList.sort(Comparator.comparing(Book::getTitle));
+        sortedList.sort(new TitleComparator());
         return sortedList;
 
     }
@@ -145,7 +145,7 @@ public class LibraryManager {
         }
 
         List<Book> sortedList = new ArrayList<>(books);
-        sortedList.sort(Comparator.comparing(Book::getPublicationYear));
+        sortedList.sort(new PublicationYearComparator());
         return sortedList;
 
     }
@@ -156,7 +156,7 @@ public class LibraryManager {
         }
 
         List<Book> sortedList = new ArrayList<>(books);
-        sortedList.sort(Comparator.comparing(Book::isAvailable));
+        sortedList.sort(new AvailabilityComparator());
         return sortedList;
 
     }

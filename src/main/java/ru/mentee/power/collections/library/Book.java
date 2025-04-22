@@ -9,7 +9,6 @@ public class Book {
     private Set<String> authors;
     private Genre genre;
     private int publicationYear;
-    private int pageCount;
     private boolean available;
 
     public enum Genre {
@@ -53,10 +52,6 @@ public class Book {
         return publicationYear;
     }
 
-    public int getPageCount() {
-        return pageCount;
-    }
-
     public boolean isAvailable() {
         return available;
     }
@@ -79,10 +74,6 @@ public class Book {
 
     public void setPublicationYear(int publicationYear) {
         this.publicationYear = publicationYear;
-    }
-
-    public void setPageCount(int pageCount) {
-        this.pageCount = pageCount;
     }
 
     public void setAvailable(boolean available) {
@@ -116,7 +107,6 @@ public class Book {
                 ", authors=" + authors +
                 ", genre=" + genre +
                 ", publicationYear=" + publicationYear +
-                ", pageCount=" + pageCount +
                 ", available=" + available;
     }
 
