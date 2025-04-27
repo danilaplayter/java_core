@@ -111,4 +111,99 @@ class AdvancedCalculatorTest {
         // Assert
         assertThat(actualSum).isEqualTo(expectedSum);
     }
+    @Test
+    @DisplayName("Граничный случай: Все числа больше 1000")
+    void shouldReturnZeroWhenAllNumbersOver1000() {
+        // Arrange
+        List<Integer> numbers = List.of(1001, 2000, 3000);
+        int expectedSum = 0;
+        // Act
+        int actualSum = calculator.sumIgnoringOver1000(numbers);
+        // Assert
+        assertThat(actualSum).isEqualTo(expectedSum);
+    }
+    @Test
+    @DisplayName("Граничный случай: Список содержит только null элементы")
+    void shouldHandleAllNullElements() {
+        // Arrange
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(null);
+        numbers.add(null);
+        int expectedSum = 0;
+        // Act
+        int actualSum = calculator.sumIgnoringOver1000(numbers);
+        // Assert
+        assertThat(actualSum).isEqualTo(expectedSum);
+    }
+    @Test
+    @DisplayName("Граничный случай: Сумма ровно 1000 (должна учитываться)")
+    void shouldIncludeExactly1000() {
+        // Arrange
+        List<Integer> numbers = List.of(1000);
+        int expectedSum = 1000;
+        // Act
+        int actualSum = calculator.sumIgnoringOver1000(numbers);
+        // Assert
+        assertThat(actualSum).isEqualTo(expectedSum);
+    }
+
+    @Test
+    @DisplayName("Граничный случай: Сумма чуть больше 1000 (1001, должна игнорироваться)")
+    void shouldIgnoreJustOver1000() {
+        // Arrange
+        List<Integer> numbers = List.of(1000, 1, 1001);
+        int expectedSum = 1001; // 1000 + 1 (1001 игнорируется)
+        // Act
+        int actualSum = calculator.sumIgnoringOver1000(numbers);
+        // Assert
+        assertThat(actualSum).isEqualTo(expectedSum);
+    }
+
+    @Test
+    @DisplayName("Граничный случай: Большая сумма (5000, должна игнорироваться)")
+    void shouldIgnoreLargeAmount5000() {
+        // Arrange
+        List<Integer> numbers = List.of(5000, 100, 200);
+        int expectedSum = 300; // 100 + 200 (5000 игнорируется)
+        // Act
+        int actualSum = calculator.sumIgnoringOver1000(numbers);
+        // Assert
+        assertThat(actualSum).isEqualTo(expectedSum);
+    }
+
+    @Test
+    @DisplayName("Граничный случай: Сумма чуть больше 5000 (5001, должна игнорироваться)")
+    void shouldIgnoreJustOver5000() {
+        // Arrange
+        List<Integer> numbers = List.of(5001, 500, 501);
+        int expectedSum = 1001; // 500 + 501 (5001 игнорируется)
+        // Act
+        int actualSum = calculator.sumIgnoringOver1000(numbers);
+        // Assert
+        assertThat(actualSum).isEqualTo(expectedSum);
+    }
+
+    @Test
+    @DisplayName("Граничный случай: Несколько чисел на границе 1000")
+    void shouldHandleMultipleBorderlineCases() {
+        // Arrange
+        List<Integer> numbers = List.of(999, 1000, 1001, 998, 1002);
+        int expectedSum = 999 + 1000 + 998; // 2997
+        // Act
+        int actualSum = calculator.sumIgnoringOver1000(numbers);
+        // Assert
+        assertThat(actualSum).isEqualTo(expectedSum);
+    }
+
+    @Test
+    @DisplayName("Граничный случай: Комбинация разных граничных значений")
+    void shouldHandleCombinationOfBorderlineValues() {
+        // Arrange
+        List<Integer> numbers = List.of(1000, 1001, 5000, 5001, 999, 1);
+        int expectedSum = 1000 + 999 + 1; // 2000
+        // Act
+        int actualSum = calculator.sumIgnoringOver1000(numbers);
+        // Assert
+        assertThat(actualSum).isEqualTo(expectedSum);
+    }
 }
