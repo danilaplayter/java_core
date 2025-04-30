@@ -25,24 +25,36 @@ test {
     finalizedBy jacocoTestReport
 }
 
-jacocoTestReport {
+    // Убедимся, что отчет генерируется только ПОСЛЕ выполнения тестов
     dependsOn test
 
     reports {
+        // Отключаем ненужные форматы
         xml.required = false
         csv.required = false
+
+        // Включаем нужный нам HTML-отчет
         html.required = true
+
+        // (Опционально) Можно указать директорию для HTML-отчета
+        // html.destination file("${buildDir}/reports/jacoco/html")
     }
 }
 
+// build.gradle.kts (Kotlin DSL)
 tasks.jacocoTestReport {
+    // Убедимся, что отчет генерируется только ПОСЛЕ выполнения тестов
     dependsOn(tasks.test)
 
     reports {
-
+        // Отключаем ненужные форматы
         xml.required.set(false)
         csv.required.set(false)
 
+        // Включаем нужный нам HTML-отчет
         html.required.set(true)
+
+        // (Опционально) Можно указать директорию для HTML-отчета
+        // html.outputLocation.set(layout.buildDirectory.dir("reports/jacoco/html"))
     }
 }
