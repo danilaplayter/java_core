@@ -25,8 +25,6 @@ test {
     finalizedBy jacocoTestReport
 }
 
-// build.gradle (Groovy DSL)
-jacocoTestReport {
     // Убедимся, что отчет генерируется только ПОСЛЕ выполнения тестов
     dependsOn test
 
