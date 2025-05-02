@@ -244,7 +244,7 @@ public class LibraryManager implements Serializable {
     }
 
     book.setAvailable(false);
-    borrowingsList.add(new Borrowing(isbn, readerId, days));
+    borrowingsList.add(new Borrowing(isbn, readerId));
     return true;
   }
 

@@ -23,7 +23,7 @@ public class Borrowing implements Serializable {
     this.dueDate = dueDate;
   }
 
-  public Borrowing(String isbn, String readerId, int days) {
+  public Borrowing(String isbn, String readerId) {
     this.isbn = isbn;
     this.readerId = readerId;
   }
