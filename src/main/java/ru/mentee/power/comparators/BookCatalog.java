@@ -29,7 +29,7 @@ public class BookCatalog {
 
   public List<Book> sortBooks(Comparator<Book> comparator) {
     if (books == null || books.isEmpty()) {
-      return null;
+      return Collections.emptyList();
     }
     List<Book> sortedBooks = new ArrayList<>(books);
     sortedBooks.sort(comparator);

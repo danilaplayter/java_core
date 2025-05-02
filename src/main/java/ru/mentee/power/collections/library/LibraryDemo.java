@@ -2,7 +2,6 @@ package ru.mentee.power.collections.library;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 public class LibraryDemo {
 
@@ -96,6 +95,5 @@ public class LibraryDemo {
     }
 
     System.out.println("\n=== Genre Statistics ===");
-    Map<Book.Genre, Integer> genreStats = library.getGenreStatistics();
   }
 }

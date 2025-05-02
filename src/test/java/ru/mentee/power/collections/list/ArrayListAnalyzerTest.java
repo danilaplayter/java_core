@@ -13,7 +13,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class ArrayListAnalyzerTest {
+class ArrayListAnalyzerTest {
 
   @Test
   @DisplayName("Метод filterByPrefix должен корректно фильтровать строки по префиксу")
