@@ -6,7 +6,7 @@ plugins {
 
 checkstyle {
     toolVersion = '10.12.5'
-    configFile = file("${rootDir}/build/reports/checkstyle/google_checks.xml")
+    configFile = file("${rootDir}/config/checkstyle/google_checks.xml")
     maxErrors = 0
 }
 
