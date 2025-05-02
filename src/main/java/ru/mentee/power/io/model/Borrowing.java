@@ -15,7 +15,6 @@ public class Borrowing implements Serializable {
   private LocalDate borrowDate;
   private LocalDate dueDate;
   private LocalDate returnDate;
-  private int days;
 
   public Borrowing(String isbn, String readerId, LocalDate borrowDate, LocalDate dueDate) {
     this.isbn = isbn;
@@ -27,7 +26,6 @@ public class Borrowing implements Serializable {
   public Borrowing(String isbn, String readerId, int days) {
     this.isbn = isbn;
     this.readerId = readerId;
-    this.days = days;
   }
 
   public String getIsbn() {

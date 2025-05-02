@@ -16,9 +16,13 @@ public class CarEcoRating {
   private static final int BASE_RATING_HYBRID = 70;
   private static final int BASE_RATING_DIESEL = 40;
   private static final int BASE_RATING_PETROL = 30;
+  private static final String PETROL = "Бензин";
+  private static final String DIESEL = "Дизель";
+  private static final String HYBRID = "Гибрид";
+  private static final String ELECTRONIC = "Электро";
 
-  private static final List<String> VALID_FUEL_TYPES = Arrays.asList("Бензин", "Дизель", "Гибрид",
-      "Электро");
+  private static final List<String> VALID_FUEL_TYPES = Arrays.asList(PETROL, DIESEL, HYBRID,
+      ELECTRONIC);
 
   public int calculateEcoRating(String fuelType, double engineVolume, double fuelConsumption,
       int yearOfManufacture, boolean isEuroCompliant) {
@@ -38,7 +42,7 @@ public class CarEcoRating {
     if (!VALID_FUEL_TYPES.contains(fuelType)) {
       return false;
     }
-    if (fuelType.equals("Электро") && engineVolume != 0) {
+    if (fuelType.equals(ELECTRONIC) && engineVolume != 0) {
       return false;
     }
     if (engineVolume < 0 || fuelConsumption < 0) {
@@ -49,10 +53,10 @@ public class CarEcoRating {
 
   private int getBaseFuelTypeRating(String fuelType) {
     return switch (fuelType) {
-      case "Бензин" -> BASE_RATING_PETROL;
-      case "Дизель" -> BASE_RATING_DIESEL;
-      case "Гибрид" -> BASE_RATING_HYBRID;
-      case "Электро" -> BASE_RATING_ELECTRIC;
+      case PETROL -> BASE_RATING_PETROL;
+      case DIESEL -> BASE_RATING_DIESEL;
+      case HYBRID -> BASE_RATING_HYBRID;
+      case ELECTRONIC -> BASE_RATING_ELECTRIC;
       default -> ERROR_CODE;
     };
   }
@@ -61,7 +65,7 @@ public class CarEcoRating {
       double fuelConsumption, int yearOfManufacture, boolean isEuroCompliant) {
     double rating = baseRating;
 
-    if (!fuelType.equals("Электро")) {
+    if (!fuelType.equals(ELECTRONIC)) {
       if (engineVolume > 2.0) {
         rating -= 15;
       } else if (engineVolume > 1.6) {
@@ -71,7 +75,7 @@ public class CarEcoRating {
       }
     }
 
-    if (fuelType.equals("Бензин") || fuelType.equals("Дизель")) {
+    if (fuelType.equals(PETROL) || fuelType.equals(DIESEL)) {
       if (fuelConsumption > 10) {
         rating -= 15;
       } else if (fuelConsumption > 7) {
@@ -92,7 +96,7 @@ public class CarEcoRating {
     if (isEuroCompliant && yearOfManufacture >= EURO_STANDARD_YEAR_THRESHOLD) {
       rating += 10;
     }
-    if (fuelType.equals("Гибрид") && fuelConsumption < 5) {
+    if (fuelType.equals(HYBRID) && fuelConsumption < 5) {
       rating += 5;
     }
 
