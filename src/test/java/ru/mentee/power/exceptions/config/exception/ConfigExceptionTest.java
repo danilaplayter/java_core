@@ -1,38 +1,38 @@
 package ru.mentee.power.exceptions.config.exception;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 class ConfigExceptionTest {
 
-    @Test
-    @DisplayName("Должен создать исключение с сообщением")
-    void shouldCreateExceptionWithMessage() {
+  @Test
+  @DisplayName("Должен создать исключение с сообщением")
+  void shouldCreateExceptionWithMessage() {
 
-        String expectedMessage = "Текст для исключения";
+    String expectedMessage = "Текст для исключения";
 
-        ConfigException exception = new ConfigException(expectedMessage);
+    ConfigException exception = new ConfigException(expectedMessage);
 
-        assertThat(exception)
-                .isInstanceOf(Exception.class)
-                .hasMessage(expectedMessage);
-        assertThat(exception.getCause()).isNull();
-    }
+    assertThat(exception)
+        .isInstanceOf(Exception.class)
+        .hasMessage(expectedMessage);
+    assertThat(exception.getCause()).isNull();
+  }
 
-    @Test
-    @DisplayName("Должен создать исключение с сообщением и причиной")
-    void shouldCreateExceptionWithMessageAndCause() {
+  @Test
+  @DisplayName("Должен создать исключение с сообщением и причиной")
+  void shouldCreateExceptionWithMessageAndCause() {
 
-        String expectedMessage = "Тестовое исключение с указанием причины";
-        Throwable expectedCause = new RuntimeException("Root cause");
+    String expectedMessage = "Тестовое исключение с указанием причины";
+    Throwable expectedCause = new RuntimeException("Root cause");
 
-        ConfigException exception = new ConfigException(expectedMessage, expectedCause);
+    ConfigException exception = new ConfigException(expectedMessage, expectedCause);
 
-        assertThat(exception)
-                .isInstanceOf(Exception.class)
-                .hasMessage(expectedMessage)
-                .hasCause(expectedCause);
-    }
+    assertThat(exception)
+        .isInstanceOf(Exception.class)
+        .hasMessage(expectedMessage)
+        .hasCause(expectedCause);
+  }
 }

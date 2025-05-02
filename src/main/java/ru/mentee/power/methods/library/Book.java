@@ -1,40 +1,41 @@
 package ru.mentee.power.methods.library;
 
 public class Book {
-    private String title;
-    private String author;
-    private int year;
-    private boolean available;
 
-    Book(String title, String author, int year) {
-        this.title = title;
-        this.author = author;
-        this.year = year;
-        this.available = true;
-    }
+  private String title;
+  private String author;
+  private int year;
+  private boolean available;
 
-    public String getTitle() {
-        return title;
-    }
+  Book(String title, String author, int year) {
+    this.title = title;
+    this.author = author;
+    this.year = year;
+    this.available = true;
+  }
 
-    public String getAuthor() {
-        return author;
-    }
+  public String getTitle() {
+    return title;
+  }
 
-    public int getYear() {
-        return year;
-    }
+  public String getAuthor() {
+    return author;
+  }
 
-    public boolean isAvailable(){
-        return available;
-    }
+  public int getYear() {
+    return year;
+  }
 
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
+  public boolean isAvailable() {
+    return available;
+  }
 
-    @Override
-    public String toString() {
-        return title + " " + author + " " + Integer.toString(year) + " " + Boolean.toString(available);
-    }
+  public void setAvailable(boolean available) {
+    this.available = available;
+  }
+
+  @Override
+  public String toString() {
+    return title + " " + author + " " + Integer.toString(year) + " " + Boolean.toString(available);
+  }
 }

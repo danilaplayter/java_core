@@ -5,91 +5,91 @@ import java.util.Random;
 
 public class QuickSortAlgorithms {
 
-    public static int[] quickSort(int[] array) {
-        int[] result = Arrays.copyOf(array, array.length);
-        quickSortRecursive(result, 0, result.length - 1);
-        return result;
+  public static int[] quickSort(int[] array) {
+    int[] result = Arrays.copyOf(array, array.length);
+    quickSortRecursive(result, 0, result.length - 1);
+    return result;
+  }
+
+
+  private static void quickSortRecursive(int[] array, int low, int high) {
+    if (low < high) {
+
+      int pivotIndex = partition(array, low, high);
+
+      quickSortRecursive(array, low, pivotIndex - 1);
+      quickSortRecursive(array, pivotIndex + 1, high);
+    }
+  }
+
+  private static int partition(int[] array, int low, int high) {
+
+    int pivot = array[high];
+    int i = low - 1;
+
+    for (int j = low; j < high; j++) {
+
+      if (array[j] <= pivot) {
+        i++;
+
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+      }
     }
 
+    int temp = array[i + 1];
+    array[i + 1] = array[high];
+    array[high] = temp;
 
-    private static void quickSortRecursive(int[] array, int low, int high) {
-        if (low < high) {
+    return i + 1;
+  }
 
-            int pivotIndex = partition(array, low, high);
+  public static int[] generateRandomArray(int size, int maxValue) {
+    int[] result = new int[size];
+    Random random = new Random();
 
-            quickSortRecursive(array, low, pivotIndex - 1);
-            quickSortRecursive(array, pivotIndex + 1, high);
-        }
+    for (int i = 0; i < size; i++) {
+      result[i] = random.nextInt(maxValue + 1);
     }
 
-    private static int partition(int[] array, int low, int high) {
+    return result;
+  }
 
-        int pivot = array[high];
-        int i = low - 1;
+  public static long measureSortingTime(int[] array) {
+    long startTime = System.currentTimeMillis();
+    quickSort(array);
+    long endTime = System.currentTimeMillis();
 
-        for (int j = low; j < high; j++) {
+    return endTime - startTime;
+  }
 
-            if (array[j] <= pivot) {
-                i++;
+  public static void compareWithJavaSort(int[] array) {
 
-                int temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
-            }
-        }
+    int[] arrayCopy1 = Arrays.copyOf(array, array.length);
+    int[] arrayCopy2 = Arrays.copyOf(array, array.length);
 
-        int temp = array[i + 1];
-        array[i + 1] = array[high];
-        array[high] = temp;
+    long startTime1 = System.currentTimeMillis();
+    quickSort(arrayCopy1);
+    long endTime1 = System.currentTimeMillis();
 
-        return i + 1;
-    }
+    long startTime2 = System.currentTimeMillis();
+    Arrays.sort(arrayCopy2);
+    long endTime2 = System.currentTimeMillis();
 
-    public static int[] generateRandomArray(int size, int maxValue) {
-        int[] result = new int[size];
-        Random random = new Random();
+    System.out.println("Сравнение производительности на массиве размером " + array.length);
+    System.out.println("---------------------------------------------------");
+    System.out.println("Наша реализация Quick Sort: " + (endTime1 - startTime1) + " мс");
+    System.out.println("Java Arrays.sort(): " + (endTime2 - startTime2) + " мс");
+  }
 
-        for (int i = 0; i < size; i++) {
-            result[i] = random.nextInt(maxValue + 1);
-        }
+  public static void main(String[] args) {
 
-        return result;
-    }
+    int[] testArray = {5, 7, 2, 9, 3, 5, 1, 8, 5, 6};
+    System.out.println("Исходный массив: " + Arrays.toString(testArray));
+    System.out.println("Отсортированный массив: " + Arrays.toString(quickSort(testArray)));
 
-    public static long measureSortingTime(int[] array) {
-        long startTime = System.currentTimeMillis();
-        quickSort(array);
-        long endTime = System.currentTimeMillis();
-
-        return endTime - startTime;
-    }
-
-    public static void compareWithJavaSort(int[] array) {
-
-        int[] arrayCopy1 = Arrays.copyOf(array, array.length);
-        int[] arrayCopy2 = Arrays.copyOf(array, array.length);
-
-        long startTime1 = System.currentTimeMillis();
-        quickSort(arrayCopy1);
-        long endTime1 = System.currentTimeMillis();
-
-        long startTime2 = System.currentTimeMillis();
-        Arrays.sort(arrayCopy2);
-        long endTime2 = System.currentTimeMillis();
-
-        System.out.println("Сравнение производительности на массиве размером " + array.length);
-        System.out.println("---------------------------------------------------");
-        System.out.println("Наша реализация Quick Sort: " + (endTime1 - startTime1) + " мс");
-        System.out.println("Java Arrays.sort(): " + (endTime2 - startTime2) + " мс");
-    }
-
-    public static void main(String[] args) {
-
-        int[] testArray = {5, 7, 2, 9, 3, 5, 1, 8, 5, 6};
-        System.out.println("Исходный массив: " + Arrays.toString(testArray));
-        System.out.println("Отсортированный массив: " + Arrays.toString(quickSort(testArray)));
-
-        int[] largeArray = generateRandomArray(100000, 1000);
-        compareWithJavaSort(largeArray);
-    }
+    int[] largeArray = generateRandomArray(100000, 1000);
+    compareWithJavaSort(largeArray);
+  }
 }

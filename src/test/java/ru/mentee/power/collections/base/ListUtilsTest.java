@@ -1,86 +1,84 @@
 package ru.mentee.power.collections.base;
 
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.InstanceOfAssertFactories.atomicReferenceArray;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 class ListUtilsTest {
 
-    @Test
-    void shouldMergeTwoListsAndRemoveDuplicates() {
-        // Arrange
-        List<String> list1 = Arrays.asList("Apple", "Banana", "Cherry");
-        List<String> list2 = Arrays.asList("Banana", "Cherry", "Date");
+  @Test
+  void shouldMergeTwoListsAndRemoveDuplicates() {
+    // Arrange
+    List<String> list1 = Arrays.asList("Apple", "Banana", "Cherry");
+    List<String> list2 = Arrays.asList("Banana", "Cherry", "Date");
 
-        // Act
-        List<String> result = ListUtils.mergeLists(list1, list2);
+    // Act
+    List<String> result = ListUtils.mergeLists(list1, list2);
 
-        // Assert
-        assertThat(result).hasSize(4).containsExactlyInAnyOrder("Apple", "Banana", "Cherry", "Date");
-    }
+    // Assert
+    assertThat(result).hasSize(4).containsExactlyInAnyOrder("Apple", "Banana", "Cherry", "Date");
+  }
 
-    @Test
-    void shouldReturnFirstListElementsWhenSecondListIsEmpty() {
+  @Test
+  void shouldReturnFirstListElementsWhenSecondListIsEmpty() {
 
-        List<String> list1 = new ArrayList<>();
-        List<String> list2 = Arrays.asList("Apple", "Banana", "Cherry");
+    List<String> list1 = new ArrayList<>();
+    List<String> list2 = Arrays.asList("Apple", "Banana", "Cherry");
 
-        List<String> result = ListUtils.mergeLists(list1, list2);
+    List<String> result = ListUtils.mergeLists(list1, list2);
 
-        assertThat(result).hasSize(3).containsExactlyInAnyOrder("Apple", "Banana", "Cherry");
+    assertThat(result).hasSize(3).containsExactlyInAnyOrder("Apple", "Banana", "Cherry");
 
-    }
+  }
 
-    @Test
-    void shouldReturnEmptyListWhenBothListsAreEmpty() {
+  @Test
+  void shouldReturnEmptyListWhenBothListsAreEmpty() {
 
-        List<String> list1 = new ArrayList<>();
-        List<String> list2 = new ArrayList<>();
+    List<String> list1 = new ArrayList<>();
+    List<String> list2 = new ArrayList<>();
 
-        List<String> result = ListUtils.mergeLists(list1, list2);
+    List<String> result = ListUtils.mergeLists(list1, list2);
 
-        assertThat(result).hasSize(0).isEmpty();
+    assertThat(result).hasSize(0).isEmpty();
 
-    }
+  }
 
-    @Test
-    void shouldReturnSecondListWhenFirstListIsNull() {
+  @Test
+  void shouldReturnSecondListWhenFirstListIsNull() {
 
-        List<String> list1 = Arrays.asList("Apple", "Banana", "Cherry");
+    List<String> list1 = Arrays.asList("Apple", "Banana", "Cherry");
 
-        List<String> result = ListUtils.mergeLists(list1, null);
+    List<String> result = ListUtils.mergeLists(list1, null);
 
-        assertThat(result).hasSize(3).containsExactlyInAnyOrder("Apple", "Banana", "Cherry");
-    }
+    assertThat(result).hasSize(3).containsExactlyInAnyOrder("Apple", "Banana", "Cherry");
+  }
 
-    @Test
-    void shouldReturnEmptyListWhenBothListsAreNull() {
+  @Test
+  void shouldReturnEmptyListWhenBothListsAreNull() {
 
-        assertThat(ListUtils.mergeLists(null, null)).isNull();
+    assertThat(ListUtils.mergeLists(null, null)).isNull();
 
-    }
+  }
 
-    @Test
-    void shouldIgnoreNullElementsWhenMergingLists() {
+  @Test
+  void shouldIgnoreNullElementsWhenMergingLists() {
 
-        List<String> list1 = Arrays.asList("Apple", "Banana", null, "Cherry");
-        List<String> list2 = Arrays.asList("Banana", "Cherry", null, null, "Date");
-        // Act
-        List<String> result = ListUtils.mergeLists(list1, list2);
+    List<String> list1 = Arrays.asList("Apple", "Banana", null, "Cherry");
+    List<String> list2 = Arrays.asList("Banana", "Cherry", null, null, "Date");
+    // Act
+    List<String> result = ListUtils.mergeLists(list1, list2);
 
-        assertThat(result).hasSize(4).containsExactlyInAnyOrder("Apple", "Banana", "Cherry", "Date");
+    assertThat(result).hasSize(4).containsExactlyInAnyOrder("Apple", "Banana", "Cherry", "Date");
 
-    }
+  }
 
-    @Test
-    void shouldHandleCustomScenarioForMergeLists() {
-        List<String> identical = Arrays.asList("java", "kotlin");
-        assertEquals(identical, ListUtils.mergeLists(identical, identical));
-    }
+  @Test
+  void shouldHandleCustomScenarioForMergeLists() {
+    List<String> identical = Arrays.asList("java", "kotlin");
+    assertEquals(identical, ListUtils.mergeLists(identical, identical));
+  }
 }

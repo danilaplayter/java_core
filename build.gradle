@@ -1,7 +1,15 @@
 plugins {
     id 'java'
     id 'jacoco'
+    id 'checkstyle'
 }
+
+checkstyle {
+    toolVersion = '10.12.5'
+    configFile = file("${rootDir}/build/reports/checkstyle/google_checks.xml")
+    maxErrors = 0
+}
+
 group = 'org.example'
 version = '1.0-SNAPSHOT'
 
@@ -9,16 +17,17 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    // Зависимости для JUnit 5 (Jupiter)
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
-    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.10.0' // Для параметризованных тестов
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
-
-    // Зависимость для AssertJ (для удобных проверок)
-    testImplementation 'org.assertj:assertj-core:3.24.2'
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
 
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.10.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+    testImplementation 'org.assertj:assertj-core:3.24.2'
+}
 
 test {
     useJUnitPlatform()
@@ -27,7 +36,6 @@ test {
 
 jacocoTestReport {
     dependsOn test
-
     reports {
         xml.required = false
         csv.required = false
@@ -35,14 +43,6 @@ jacocoTestReport {
     }
 }
 
-tasks.jacocoTestReport {
-    dependsOn(tasks.test)
-
-    reports {
-
-        xml.required.set(false)
-        csv.required.set(false)
-
-        html.required.set(true)
-    }
+tasks.named('check') {
+    dependsOn jacocoTestReport
 }

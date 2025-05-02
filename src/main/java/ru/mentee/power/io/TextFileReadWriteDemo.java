@@ -8,39 +8,39 @@ import java.util.List;
 
 public class TextFileReadWriteDemo {
 
-    public static void main(String[] args) {
-        String fileName = "lines.txt";
-        List<String> linesToWrite = new ArrayList<>();
-        linesToWrite.add("Это первая строка для записи.");
-        linesToWrite.add("А это уже вторая.");
-        linesToWrite.add("И, наконец, третья строка!");
+  public static void main(String[] args) {
+    String fileName = "lines.txt";
+    List<String> linesToWrite = new ArrayList<>();
+    linesToWrite.add("Это первая строка для записи.");
+    linesToWrite.add("А это уже вторая.");
+    linesToWrite.add("И, наконец, третья строка!");
 
-        // --- Запись строк в файл ---
+    // --- Запись строк в файл ---
 
-        try (FileWriter writer = new FileWriter(fileName)) {
-            for (String line : linesToWrite) {
-                writer.write(line);
-                writer.write(System.lineSeparator());
-            }
-            System.out.println("Строки успешно записаны в файл: " + fileName);
+    try (FileWriter writer = new FileWriter(fileName)) {
+      for (String line : linesToWrite) {
+        writer.write(line);
+        writer.write(System.lineSeparator());
+      }
+      System.out.println("Строки успешно записаны в файл: " + fileName);
 
-        } catch (IOException e) {
-            System.err.println("Ошибка при записи строк: " + e.getMessage());
-        }
-
-        System.out.println("\\n--- Чтение строк из файла ---");
-        // --- Чтение строк из файла ---
-
-        try (FileReader reader = new FileReader(fileName)) {
-            int charCode;
-            while ((charCode = reader.read()) != -1) {
-                System.out.print((char) charCode);
-            }
-            System.out.println();
-            System.out.println("Чтение завершено.");
-
-        } catch (IOException e) {
-            System.err.println("Ошибка при чтении строк: " + e.getMessage());
-        }
+    } catch (IOException e) {
+      System.err.println("Ошибка при записи строк: " + e.getMessage());
     }
+
+    System.out.println("\\n--- Чтение строк из файла ---");
+    // --- Чтение строк из файла ---
+
+    try (FileReader reader = new FileReader(fileName)) {
+      int charCode;
+      while ((charCode = reader.read()) != -1) {
+        System.out.print((char) charCode);
+      }
+      System.out.println();
+      System.out.println("Чтение завершено.");
+
+    } catch (IOException e) {
+      System.err.println("Ошибка при чтении строк: " + e.getMessage());
+    }
+  }
 }
